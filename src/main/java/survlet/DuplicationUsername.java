@@ -16,9 +16,7 @@ import utils.ResponseUtil;
 
 @WebServlet("/auth/signup/duplicate/username")
 public class DuplicationUsername extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	private String[] usernames = { "aaa", "bbb", "ccc" };   
+	private static final long serialVersionUID = 1L; 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");

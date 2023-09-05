@@ -20,8 +20,8 @@ public class CorsFilter extends HttpFilter implements Filter {
 		HttpServletResponse httpServletResponse= (HttpServletResponse) response; //ServletRequest은  setHeader가 없기 때문에 다운캐스팅을 통해 HttpServletResponse로 변경 뒤 setHeader를 씀
 		
 		httpServletResponse.setHeader("Access-Control-Allow-Origin", "*");			//http://localhost:3000 이 주소에서 오는 요청만 받아들임. *이면 모든 주소에서 들어오는 요청을 받아들임
-		httpServletResponse.setHeader("Access-Control-Allow-Headers", "x-requested-with, origin, content-type, accept");
-		httpServletResponse.setHeader("Access-Control-Allow-Methods", "POST,GET,PUT,OPTIONS,DELETE");	//받아들일 요청의 종류
+		httpServletResponse.setHeader("Access-Control-Allow-Headers", "*");
+		httpServletResponse.setHeader("Access-Control-Allow-Methods", "*");	//받아들일 요청의 종류
 		httpServletResponse.setHeader("Access-Control-Max-Age", "3600");	//24시간을 의미
 		
 		chain.doFilter(request, response);	//서블릿이 호출되는 지점 //후처리
