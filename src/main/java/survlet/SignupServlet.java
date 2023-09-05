@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import data.UserData;
+import entity.User;
 import utils.JsonParseUtil;
 import utils.ResponseUtil;
 
@@ -56,6 +59,20 @@ public class SignupServlet extends HttpServlet {
 		Map<String, Object> userMap = JsonParseUtil.toMap(request.getInputStream());
 		System.out.println(userMap);
 		
+		List<User> userList = UserData.userList;
+		
+		User user = User.builder()
+				.userId(userList.size() + 1)					//userId는 현재 list 사이즈 + 1
+				.username((String) userMap.get("username"))
+				.password((String) userMap.get("password"))
+				.name((String) userMap.get("name"))
+				.email((String) userMap.get("email"))
+				.build();
+		
+		userList.add(user);
+		
+		ResponseUtil.response(response).of(201).body(true);	//201 : 성공 코드 중 생성 코드 (데이터를 추가하는 등의 경우)
+		
 //		System.out.println(userMap.get("username"));
 //		System.out.println(userMap.get("password"));
 //		System.out.println(userMap.get("name"));
@@ -64,9 +81,9 @@ public class SignupServlet extends HttpServlet {
 //		ResponseUtil.ofJson(response, JsonParseUtil.toJson(userMap));
 //		userMap을 Json으로 응답받고 다시 userMap을 Json으로 바꿔 응답함
 		
-		System.out.println("회원가입");
-		
-		ResponseUtil.response(response).of(200).body("회원가입 성공");
+//		System.out.println("회원가입");
+//		
+//		ResponseUtil.response(response).of(200).body("회원가입 성공");
 	}
 
 }

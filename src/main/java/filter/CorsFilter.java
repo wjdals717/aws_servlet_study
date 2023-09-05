@@ -25,6 +25,6 @@ public class CorsFilter extends HttpFilter implements Filter {
 		httpServletResponse.setHeader("Access-Control-Max-Age", "3600");	//24시간을 의미
 		
 		chain.doFilter(request, response);	//서블릿이 호출되는 지점 //후처리
-	}
+	}	
 
 }

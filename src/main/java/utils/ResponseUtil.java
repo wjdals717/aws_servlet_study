@@ -5,8 +5,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
 public class ResponseUtil {
-//	private int statusCode;
-//	private String body;
 
 	public static ResponseUtilBuilder response(HttpServletResponse response) {
 		return new ResponseUtilBuilder(response);	//객체가 생성되어 주소가 할당됨
